@@ -11,6 +11,14 @@ class MovieList extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log('HEY THE THING HAPPENED')
+
+    setTimeout(() => {
+      this.setState({movies: movies, isLoading: false})
+    },2500)
+  }
+
   render() {
     const mappedMovies = this.state.movies.map((element) => {
       return <Movie movie={element} key={element.id} />
@@ -20,6 +28,7 @@ class MovieList extends Component {
       <div className="movie-list">
         <h1>Here are some movies!</h1>
         {mappedMovies}
+        {this.state.isLoading ? <h1>LOADING YOUR MOVIES...</h1> : mappedMovies}
       </div>
     )
   }
